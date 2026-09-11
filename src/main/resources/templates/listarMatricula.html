@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Matrículas</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h2>Controle de Matrículas Ativas</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cód. Matrícula</th>
+                <th>Aluno</th>
+                <th>Curso</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Nota</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="mat : ${listMatriculas}">
+                <td th:text="${mat.id_matricula}"></td>
+                
+                <td th:text="${mat.aluno.nome_aluno}"></td>
+                <td th:text="${mat.curso.nome_curso}"></td>
+                
+                <td th:text="${mat.data_matricula}"></td>
+                <td th:text="${mat.status}"></td>
+                
+                <!-- Validação simples: Se a nota for nula mostra um traço -->
+                <td th:text="${mat.notaFinal != null ? mat.notaFinal : '-'}"></td>
+                
+                <td>
+                    <a th:href="@{/matriculas/editar/{id}(id=${mat.id_matricula})}">Editar / Lançar Nota</a> |
+                    <a th:href="@{/matriculas/excluir/{id}(id=${mat.id_matricula})}" onclick="return confirm('Excluir esta matrícula?');">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/matriculas/novaMatricula}"> Nova Matrícula</a>
+    <br><br>
+    <a th:href="@{/alunos/main}">Ir para Main</a>
+
+
+</body>
+</html>

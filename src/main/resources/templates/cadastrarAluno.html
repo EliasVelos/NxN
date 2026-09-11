@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Aluno</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: #498245;
+            color: white;
+            border: none;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Formulário de Aluno</h2>
+
+    <form th:action="@{/aluno/salvar}" th:object="${aluno}" method="POST">
+
+        <input type="hidden" th:field="*{id_aluno}" />
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{nome_aluno}" required>
+
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" th:field="*{cpf_aluno}" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" th:field="*{email_aluno}" required>
+
+        <button type="submit">Salvar Aluno</button>
+
+    </form>
+
+    <a th:href="@{/aluno/listarTodos}">
+        Voltar para a Listagem
+    </a>
+
+</body>
+
+</html>
