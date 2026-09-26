@@ -7,6 +7,5 @@ import com.example.projetoN.exercicioN.Entity.Matricula;
 
 @Repository
 public interface MatriculaRepository extends JpaRepository< Matricula, Long >{
-
     
 }

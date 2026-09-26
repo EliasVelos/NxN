@@ -1,7 +1,5 @@
 package com.example.projetoN.exercicioN.Entity;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,12 +28,12 @@ public class Matricula {
     private Curso curso;
 
     @Column(name = "data_matricula", nullable = false)
-    private String dataMatricula;
+    private String data_matricula;
 
     @Column(name = "status", nullable = false)
     private String status;
 
     @Column(name = "nota_final")
-    private Double notaFinal;
+    private Double nota_final;
    
 }

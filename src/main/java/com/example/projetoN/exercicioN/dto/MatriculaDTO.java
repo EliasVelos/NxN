@@ -7,9 +7,10 @@ public class MatriculaDTO {
     
     private Long id_aluno;
     private Long id_curso;
-    private String dataMatricula;
+    private Long id_matricula;
+    private String data_matricula;
     private String status;
-    private Double notaFinal;
+    private Double nota_final;
 
 
 }

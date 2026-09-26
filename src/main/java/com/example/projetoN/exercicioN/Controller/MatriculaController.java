@@ -10,10 +10,10 @@ import com.example.projetoN.exercicioN.Service.MatriculaService;
 import com.example.projetoN.exercicioN.dto.MatriculaDTO;
 
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping ("/matriculaCTR")
+@RequestMapping ("/matricula")
 public class MatriculaController {
     
     private final MatriculaService oMatriculaService;
@@ -28,13 +28,13 @@ public class MatriculaController {
             this.oMatriculaService = oMatriculaService;
             this.oCursoService = oCursoService;
             this.oAlunoService = oAlunoService;
+
     }
 
     @GetMapping("/listarMatriculas")
     public String listarMatricula(Model oModel) {
 
-        oModel.addAttribute("matriculas", 
-        oMatriculaService.listarTodasMatriculas());
+        oModel.addAttribute("listMatriculas", oMatriculaService.listarTodasMatriculas());
         return "listarMatricula";
 
     }
@@ -53,6 +53,18 @@ public class MatriculaController {
         return "cadastrarMatricula";
 
     }
-    
 
+    @PostMapping("/salvarMatricula")
+    public String salvarMatricula(MatriculaDTO oMatriculaDTO) {
+        
+        if(oMatriculaDTO.getId_matricula() == null) {
+            oMatriculaService.salvarMatricula(oMatriculaDTO);
+        }
+        else{
+            oMatriculaService.editarMatricula(oMatriculaDTO.getId_matricula(), oMatriculaDTO);
+        }
+
+        return "redirect:/matricula/listarMatriculas";
+    }
+    
 }

@@ -10,14 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-
 @Controller
 @RequestMapping("/aluno")
 public class AlunoController {
 
     private final AlunoService alunoService;
-    
 
     public AlunoController(AlunoService alunoService) {
         this.alunoService = alunoService;
@@ -62,6 +59,6 @@ public class AlunoController {
      oModel.addAttribute("aluno", alunoExistente);
      return "cadastrarAluno";
     
-}
+    }
 
 }

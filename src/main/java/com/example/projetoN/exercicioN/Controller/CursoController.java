@@ -51,5 +51,14 @@ public class CursoController {
         return "redirect:/curso/listarTodos";
 
     }
+
+    @GetMapping("/editar/{id}")
+    public String formAlterarCurso(@PathVariable long id, Model oModel) {
+
+     Curso cursoExistente = cursoService.buscarCursoPorId(id);
+     oModel.addAttribute("curso", cursoExistente);
+     return "cadastrarCurso";
+    
+    }
     
 }

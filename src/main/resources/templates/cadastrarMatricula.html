@@ -8,7 +8,9 @@
 
     <h2>Registrar Nova Matrícula</h2>
 
-    <form th:action="@{/matriculas/salvarMatricula}" th:object="${matriculaDTO}" method="POST">
+    <form th:action="@{/matricula/salvarMatricula}" th:object="${matriculaDTO}" method="POST">
+
+        <input type="hidden" th:field="*{id_matricula}" />
         
         <div>
             <label for="id_aluno">Selecione o Aluno:</label>
@@ -36,8 +38,8 @@
         <br>
 
         <div>
-            <label for="dataMatricula">Data da Matrícula:</label>
-            <input type="text" id="dataMatricula" th:field="*{dataMatricula}" placeholder="DD/MM/AAAA" required />
+            <label for="data_matricula">Data da Matrícula:</label>
+            <input type="text" id="data_matricula" th:field="*{data_matricula}" placeholder="DD/MM/AAAA" required />
         </div>
         <br>
 
@@ -52,8 +54,8 @@
         <br>
 
         <div>
-            <label for="notaFinal">Nota Final (Opcional):</label>
-            <input type="number" step="0.1" id="notaFinal" th:field="*{notaFinal}" />
+            <label for="nota_final">Nota Final (Opcional):</label>
+            <input type="number" step="0.1" id="nota_final" th:field="*{nota_final}" />
         </div>
         <br>
 
@@ -61,7 +63,7 @@
     </form>
 
     <br>
-    <a th:href="@{/matriculas/listarMatriculas}">Voltar para a Listagem</a>
+    <a th:href="@{/matricula/listarMatriculas}">Voltar para a Listagem</a>
 
 </body>
 </html>
