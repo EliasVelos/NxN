@@ -3,7 +3,6 @@ package com.example.projetoN.exercicioN.Service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
 import com.example.projetoN.exercicioN.Entity.Aluno;
 import com.example.projetoN.exercicioN.Repository.AlunoRepository;
 
@@ -18,7 +17,7 @@ public class AlunoService{
     }
 
     //CRUD
-
+    //Listar todos os alunos
     public List<Aluno> listarTodosAlunos() {
         return alunoRepository.findAll();
     }

@@ -3,7 +3,6 @@ package com.example.projetoN.exercicioN.Service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
 import com.example.projetoN.exercicioN.Entity.Matricula;
 import com.example.projetoN.exercicioN.Repository.MatriculaRepository;
 import com.example.projetoN.exercicioN.dto.MatriculaDTO;
@@ -11,18 +10,30 @@ import com.example.projetoN.exercicioN.dto.MatriculaDTO;
 @Service
 public class MatriculaService {
     
+    //Mais seguro que o autowired
     private final MatriculaRepository matriculaRepository;
     private final AlunoService alunoService;
     private final CursoService cursoService;
 
     public MatriculaService(MatriculaRepository matriculaRepository, AlunoService alunoService, CursoService cursoService) {
+
         this.matriculaRepository = matriculaRepository;
         this.alunoService = alunoService;
         this.cursoService = cursoService;
+
     }
 
+    //CRUD - Create, Read, Update, Delete
     public List<Matricula> listarTodasMatriculas() {
         return matriculaRepository.findAll();
+    }
+
+    public Matricula buscarMatriculaPorId(Long id) {
+
+        return matriculaRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException(
+                "Matrícula não encontrada com o ID: " + id));
+
     }
 
     public Matricula salvarMatricula(MatriculaDTO oMatriculaDTO) {
@@ -42,15 +53,7 @@ public class MatriculaService {
 
     }
 
-    public Matricula buscarMatriculaPorId(Long id) {
-
-        return matriculaRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException(
-                "Matrícula não encontrada com o ID: " + id));
-
-    }
-
-    public Matricula editarMatricula(Long id, MatriculaDTO oMatriculaDTO) {
+    public Matricula alterarMatricula(Long id, MatriculaDTO oMatriculaDTO) {
 
         Matricula matriculaExistente = new Matricula();
 
@@ -67,7 +70,7 @@ public class MatriculaService {
 
     }
 
-    public void excluirMatricula(Long id) {
+    public void deletarMatricula(Long id) {
         matriculaRepository.deleteById(id);
     }
 

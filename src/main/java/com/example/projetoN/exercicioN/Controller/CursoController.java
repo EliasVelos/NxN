@@ -20,6 +20,7 @@ public class CursoController {
         this.cursoService = cursoService;
     }
 
+    //CRUD
     @GetMapping("/listarTodos")
     public String listarTodosCursos(Model oModel) {
 
@@ -57,7 +58,7 @@ public class CursoController {
 
      Curso cursoExistente = cursoService.buscarCursoPorId(id);
      oModel.addAttribute("curso", cursoExistente);
-     return "cadastrarCurso";
+     return "curso/cadastrarCurso";
     
     }
     

@@ -20,6 +20,7 @@ public class AlunoController {
         this.alunoService = alunoService;
     }
 
+    //CRUD
     @GetMapping("/listarTodos")
     public String listarTodosAlunos(Model oModel) {
 
@@ -57,7 +58,7 @@ public class AlunoController {
 
      Aluno alunoExistente = alunoService.buscarAlunoPorId(id);
      oModel.addAttribute("aluno", alunoExistente);
-     return "cadastrarAluno";
+     return "aluno/cadastrarAluno";
     
     }
 

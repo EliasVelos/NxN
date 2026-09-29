@@ -3,7 +3,6 @@ package com.example.projetoN.exercicioN.Service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
 import com.example.projetoN.exercicioN.Entity.Curso;
 import com.example.projetoN.exercicioN.Repository.CursoRepository;
 
@@ -17,7 +16,6 @@ public class CursoService {
     }
 
     //CRUD
-
     public List<Curso> listarTodosCursos() {
         return cursoRepository.findAll();
     }

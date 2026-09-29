@@ -11,6 +11,5 @@ public class MatriculaDTO {
     private String data_matricula;
     private String status;
     private Double nota_final;
-
-
+    
 }

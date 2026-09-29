@@ -10,6 +10,7 @@ import com.example.projetoN.exercicioN.Service.MatriculaService;
 import com.example.projetoN.exercicioN.dto.MatriculaDTO;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -31,6 +32,7 @@ public class MatriculaController {
 
     }
 
+    //CRUD
     @GetMapping("/listarTodos")
     public String listarMatricula(Model oModel) {
 
@@ -61,10 +63,18 @@ public class MatriculaController {
             oMatriculaService.salvarMatricula(oMatriculaDTO);
         }
         else{
-            oMatriculaService.editarMatricula(oMatriculaDTO.getId_matricula(), oMatriculaDTO);
+            oMatriculaService.alterarMatricula(oMatriculaDTO.getId_matricula(), oMatriculaDTO);
         }
 
         return "redirect:/matricula/listarTodos";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluirMatricula(@PathVariable Long id) {
+
+        oMatriculaService.deletarMatricula(id);
+        return "redirect:/matricula/listarTodos";
+
     }
     
 }
