@@ -24,7 +24,7 @@ public class AlunoController {
     public String listarTodosAlunos(Model oModel) {
 
         oModel.addAttribute("listAlunos", alunoService.listarTodosAlunos());
-        return "listarAluno";
+        return "aluno/listarAluno";
 
     }
 
@@ -32,7 +32,7 @@ public class AlunoController {
     public String formCadastro(Model oModel) {
 
         oModel.addAttribute("aluno", new Aluno());
-        return "cadastrarAluno";
+        return "aluno/cadastrarAluno";
 
     }
         

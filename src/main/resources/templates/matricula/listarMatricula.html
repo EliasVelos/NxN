@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Matrículas</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #498245;
+            color: white;
+        }
+
+        a {
+            color: #45824E;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .cadastrar {
+            display: block;
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Controle de Matrículas Ativas</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Cód. Matrícula</th>
+                <th>Aluno</th>
+                <th>Curso</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Nota</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr th:each="matricula : ${listMatriculas}">
+
+                <td th:text="${matricula.id_matricula}"></td>
+
+                <td th:text="${matricula.aluno.nome_aluno}"></td>
+                
+                <td th:text="${matricula.curso.nome_curso}"></td>
+
+                <td th:text="${matricula.data_matricula}"></td>
+                
+                <td th:text="${matricula.status}"></td>
+
+                <!-- Validação simples: Se a nota for nula mostra um traço -->
+                <td th:text="${matricula.nota_final != null ? matricula.nota_final : '-'}"></td>
+
+                <td>
+                    <a th:href="@{/matricula/editar/{id}(id=${matricula.id_matricula})}">
+                        Editar / Lançar Nota
+                    </a>
+
+                    |
+
+                    <a th:href="@{/matricula/excluir/{id}(id=${matricula.id_matricula})}"
+                       onclick="return confirm('Excluir esta matrícula?');">
+                        Excluir
+                    </a>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <a class="cadastrar" th:href="@{/matricula/formCadastrar}">
+        + Nova Matrícula
+    </a>
+
+    <a class="cadastrar" th:href="@{/}">Ir para o DashBoard</a>
+
+</body>
+
+</html>

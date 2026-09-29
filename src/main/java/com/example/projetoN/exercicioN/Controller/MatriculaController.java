@@ -31,15 +31,15 @@ public class MatriculaController {
 
     }
 
-    @GetMapping("/listarMatriculas")
+    @GetMapping("/listarTodos")
     public String listarMatricula(Model oModel) {
 
         oModel.addAttribute("listMatriculas", oMatriculaService.listarTodasMatriculas());
-        return "listarMatricula";
+        return "matricula/listarMatricula";
 
     }
     
-    @GetMapping("/formCadastrarMatricula")
+    @GetMapping("/formCadastrar")
     public String showFormCadastrarMatricula(Model oModel) {
         
         oModel.addAttribute("matriculaDTO", new MatriculaDTO());
@@ -50,11 +50,11 @@ public class MatriculaController {
         oModel.addAttribute("listCursos", 
         oCursoService.listarTodosCursos());
 
-        return "cadastrarMatricula";
+        return "matricula/cadastrarMatricula";
 
     }
 
-    @PostMapping("/salvarMatricula")
+    @PostMapping("/salvar")
     public String salvarMatricula(MatriculaDTO oMatriculaDTO) {
         
         if(oMatriculaDTO.getId_matricula() == null) {
@@ -64,7 +64,7 @@ public class MatriculaController {
             oMatriculaService.editarMatricula(oMatriculaDTO.getId_matricula(), oMatriculaDTO);
         }
 
-        return "redirect:/matricula/listarMatriculas";
+        return "redirect:/matricula/listarTodos";
     }
     
 }

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Matrícula</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            margin-top: 10px;
+        }
+
+        /* Adicionei a tag 'select' junto ao 'input' para que os campos de seleção fiquem com o mesmo padrão visual */
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: #498245;
+            color: white;
+            border: none;
+            margin-top: 10px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Registrar Nova Matrícula</h2>
+
+    <form th:action="@{/matricula/salvar}" th:object="${matriculaDTO}" method="POST">
+
+        <input type="hidden" th:field="*{id_matricula}" />
+        
+        <label for="id_aluno">Selecione o Aluno:</label>
+        <select id="id_aluno" th:field="*{id_aluno}" required>
+            <option value=""> Escolha um Aluno </option>
+            <!-- O th:value guarda o ID (que vai pro banco), e o th:text mostra o Nome para o usuário -->
+            <option th:each="a : ${listAlunos}"
+                    th:value="${a.id_aluno}"
+                    th:text="${a.nome_aluno}">
+            </option>
+        </select>
+        
+        <label for="id_curso">Selecione o Curso:</label>
+        <select id="id_curso" th:field="*{id_curso}" required>
+            <option value=""> Escolha um Curso </option>
+            <option th:each="c : ${listCursos}"
+                    th:value="${c.id_curso}"
+                    th:text="${c.nome_curso}">
+            </option>
+        </select>
+
+        <label for="data_matricula">Data da Matrícula:</label>
+        <input type="text" id="data_matricula" th:field="*{data_matricula}" placeholder="DD/MM/AAAA" required />
+
+        <label for="status">Status:</label>
+        <select id="status" th:field="*{status}" required>
+            <option value="ATIVA">Ativa</option>
+            <option value="TRANCADA">Trancada</option>
+            <option value="FINALIZADA">Finalizada</option>
+        </select>
+
+        <label for="nota_final">Nota Final (Opcional):</label>
+        <input type="number" step="0.1" id="nota_final" th:field="*{nota_final}" />
+
+        <button type="submit">Efetivar Matrícula</button>
+
+    </form>
+
+    <a th:href="@{/matricula/listarTodos}">
+        Voltar para a Listagem
+    </a>
+
+</body>
+
+</html>

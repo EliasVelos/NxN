@@ -24,7 +24,7 @@ public class CursoController {
     public String listarTodosCursos(Model oModel) {
 
         oModel.addAttribute("listCurso", cursoService.listarTodosCursos());
-        return "listarCurso";
+        return "curso/listarCurso";
 
     }
 
@@ -32,7 +32,7 @@ public class CursoController {
     public String formCadastro(Model oModel) {
 
         oModel.addAttribute("curso", new Curso());
-        return "cadastrarCurso";
+        return "curso/cadastrarCurso";
 
     }
         

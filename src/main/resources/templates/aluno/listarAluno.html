@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Cursos</title>
+    <title>Lista de Alunos</title>
 
     <style>
         body {
@@ -54,41 +54,41 @@
 
 <body>
 
-    <h2>Lista de Cursos Disponíveis</h2>
+    <h2>Lista de Alunos Matriculados</h2>
 
     <table>
 
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nome do Curso</th>
-                <th>Carga Horária</th>
-                <th>Descrição</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>E-mail</th>
                 <th>Ações</th>
             </tr>
         </thead>
 
         <tbody>
 
-            <tr th:each="curso : ${listCurso}">
+            <tr th:each="aluno : ${listAlunos}">
 
-                <td th:text="${curso.id_curso}"></td>
+                <td th:text="${aluno.id_aluno}"></td>
 
-                <td th:text="${curso.nome_curso}"></td>
+                <td th:text="${aluno.nome_aluno}"></td>
 
-                <td th:text="${curso.carga_horaria}"></td>
+                <td th:text="${aluno.cpf_aluno}"></td>
 
-                <td th:text="${curso.descricao_curso}"></td>
+                <td th:text="${aluno.email_aluno}"></td>
 
                 <td>
-                    <a th:href="@{/curso/editar/{id}(id=${curso.id_curso})}">
+                    <a th:href="@{/aluno/editar/{id}(id=${aluno.id_aluno})}">
                         Editar
                     </a>
 
                     |
 
-                    <a th:href="@{/curso/excluir/{id}(id=${curso.id_curso})}"
-                       onclick="return confirm('Tem certeza que deseja excluir este curso?');">
+                    <a th:href="@{/aluno/excluir/{id}(id=${aluno.id_aluno})}"
+                       onclick="return confirm('Tem certeza que deseja excluir?');">
                         Excluir
                     </a>
                 </td>
@@ -99,7 +99,11 @@
 
     </table>
 
-    <a class="cadastrar" th:href="@{/curso/formCadastrar}">  + Cadastrar Novo Curso</a>
+    <a class="cadastrar" th:href="@{/aluno/formCadastrar}">
+        + Cadastrar Novo Aluno
+    </a>
+
+    <a class="cadastrar" th:href="@{/}">Ir para o DashBoard</a>
 
 </body>
 
