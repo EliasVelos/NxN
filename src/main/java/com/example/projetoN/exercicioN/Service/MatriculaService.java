@@ -55,7 +55,7 @@ public class MatriculaService {
 
     public Matricula alterarMatricula(Long id, MatriculaDTO oMatriculaDTO) {
 
-        Matricula matriculaExistente = new Matricula();
+        Matricula matriculaExistente = buscarMatriculaPorId(id);
 
         matriculaExistente.setAluno(
             alunoService.buscarAlunoPorId(oMatriculaDTO.getId_aluno()));

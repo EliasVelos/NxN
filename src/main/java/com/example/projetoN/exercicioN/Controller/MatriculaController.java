@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.projetoN.exercicioN.Entity.Matricula;
 import com.example.projetoN.exercicioN.Service.AlunoService;
 import com.example.projetoN.exercicioN.Service.CursoService;
 import com.example.projetoN.exercicioN.Service.MatriculaService;
@@ -56,6 +57,34 @@ public class MatriculaController {
 
     }
 
+    @GetMapping("/editar/{id}")
+    public String editarMatricula(@PathVariable Long id, Model oModel) {
+
+        Matricula matricula = oMatriculaService.buscarMatriculaPorId(id);
+        MatriculaDTO matriculaDTO = new MatriculaDTO();
+
+        matriculaDTO.setId_matricula(matricula.getId_matricula());
+
+        matriculaDTO.setId_aluno(matricula.getAluno().getId_aluno());
+
+        matriculaDTO.setId_curso(matricula.getCurso().getId_curso());
+
+        matriculaDTO.setData_matricula(matricula.getData_matricula());
+
+        matriculaDTO.setStatus(matricula.getStatus());
+
+        matriculaDTO.setNota_final(matricula.getNota_final());
+
+        oModel.addAttribute("matriculaDTO", matriculaDTO);
+
+        oModel.addAttribute("listAlunos", oAlunoService.listarTodosAlunos());
+
+        oModel.addAttribute("listCursos", oCursoService.listarTodosCursos());
+
+        return "matricula/cadastrarMatricula";
+
+    }
+
     @PostMapping("/salvar")
     public String salvarMatricula(MatriculaDTO oMatriculaDTO) {
         
@@ -67,6 +96,7 @@ public class MatriculaController {
         }
 
         return "redirect:/matricula/listarTodos";
+        
     }
 
     @GetMapping("/excluir/{id}")
